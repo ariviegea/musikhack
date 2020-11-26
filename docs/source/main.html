@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">// The main logic for your project goes in this file.
+
+<span id='global-property-player'>/**
+</span> * The Player object; an Actor controlled by user input.
+ */
+var player;
+
+<span id='global-property-keys'>/**
+</span> * Keys used for various directions.
+ */
+var keys = {
+  up: ['up', 'w'],
+  down: ['down', 's'],
+  left: ['left', 'a'],
+  right: ['right', 'd'],
+};
+
+<span id='global-property-preloadables'>/**
+</span> * An array of image file paths to pre-load.
+ */
+var preloadables = [];
+
+<span id='global-method-update'>/**
+</span> * A magic-named function where all updates should occur.
+ *
+ * @param {Number} delta
+ *   The amount of time since the last update. Use this to smooth movement.
+ *   This has the same value as the global App.physicsDelta.
+ * @param {Number} timeElapsed
+ *   The amount of time elapsed while animating. This is useful for time-based
+ *   movement and limiting the frequency of events. This has the same value as
+ *   the global App.physicsTimeElapsed.
+ */
+function update(delta, timeElapsed) {
+  player.update();
+}
+
+<span id='global-method-draw'>/**
+</span> * A magic-named function where all drawing should occur.
+ */
+function draw() {
+  // Draw a background. This is just for illustration so we can see scrolling.
+  context.drawBkgdRadialGradient();
+
+	player.draw();
+}
+
+<span id='global-method-setup'>/**
+</span> * A magic-named function for one-time setup.
+ *
+ * @param {Boolean} again
+ *   true if the app has been reset and is starting over; false the first time
+ *   it is being set up.
+ */
+function setup(again) {
+  // Change the size of the playable area. Do this before placing items!
+  world.resize(canvas.width + 200, canvas.height + 200);
+
+  // Switch from side view to top-down.
+  Actor.prototype.GRAVITY = false;
+
+  // Initialize the player.
+  player = new Player();
+}
+</pre>
+</body>
+</html>
